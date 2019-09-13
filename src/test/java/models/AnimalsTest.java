@@ -28,7 +28,16 @@ public class AnimalsTest {
         assertEquals("Baboon", animal.getName());
 
     }
+
+    @Test
+    public void retunsTrueIfNamesAreTheSame_true() {
+        Animals animal = setUpNewAnimal();
+        Animals anotherAnimal = new Animals("Baboon");
+        assertTrue(animal.equals(anotherAnimal));
+    }
+
     public Animals setUpNewAnimal(){
         return new Animals ("Baboon");
     }
+    
 }
