@@ -1,6 +1,8 @@
 package models;
 
+import java.util.List;
 import java.util.Objects;
+import org.sql2o.*;
 
 public class Animals {
 
@@ -22,6 +24,23 @@ public class Animals {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public void save(){
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "INSERT INTO animals (name) VALUES (:name)";
+            con.createQuery(sql)
+                    .addParameter("name",this.name)
+                    .executeUpdate();
+
+
+        }
+    }
+    public static List<Animals> all() {
+        String sql = "SELECT * FROM animals";
+        try(Connection con = DB.sql2o.open()){
+            return con.createQuery(sql).executeAndFetch(Animals.class);
+        }
     }
 
     public String getName() {
