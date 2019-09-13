@@ -18,7 +18,17 @@ public class AnimalsTest {
 
     @Test
     public void animals_instantiatesCorrectly_true() {
-        Animals animal = new Animals("Boboon");
+        Animals animal = setUpNewAnimal();
         assertTrue(animal instanceof Animals);
+    }
+
+    @Test
+    public void getName_animalsInstantiatesWithName_true() {
+        Animals animal = setUpNewAnimal();
+        assertEquals("Baboon", animal.getName());
+
+    }
+    public Animals setUpNewAnimal(){
+        return new Animals ("Baboon");
     }
 }
