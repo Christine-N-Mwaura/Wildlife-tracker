@@ -18,4 +18,7 @@ public class Sighting {
         return rangerName;
     }
 
+    public String getLocation() {
+        return location;
+    }
 }
