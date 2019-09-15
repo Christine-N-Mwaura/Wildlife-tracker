@@ -8,10 +8,23 @@ public class Animals {
 
     private String name;
     private int id;
+    private int bodyTemp;
+    private int age;
+
+
+    public static final int MAX_BODY_TEMP = 40;
+    public static final int MAX_ANIMAL_AGE = 70;
+    public static final int MIN_ALL_LEVELS = 0;
+
 
     public Animals(String name){
         this.name = name;
+        this.bodyTemp = MAX_BODY_TEMP / 2 ;
+        this.age = MAX_ANIMAL_AGE / 2;
+
     }
+
+
 
     @Override
     public boolean equals(Object otherAnimal) {
@@ -44,12 +57,52 @@ public class Animals {
         }
     }
 
+    public String ageStage(){
+        String stage = "";
+        if(age <= MAX_ANIMAL_AGE / 2){
+            stage = "young";
+        }else if(age > MAX_ANIMAL_AGE / 2){
+            stage = "adult";
+        }else if(age == 0){
+            stage = "newborn";
+        }
+        return stage;
+    }
+
+    public void ageing (){
+        age++;
+    }
+
+    public String healthStatus(){
+        String status = "";
+        if(bodyTemp <= MAX_BODY_TEMP / 2){
+            status = "ill";
+        }else if(bodyTemp >= MAX_BODY_TEMP /2){
+            status = "healthy";
+        }else {
+            status = "okay";
+        }
+        return status;
+    }
+
+    public void tempRising(){
+        bodyTemp ++;
+    }
+
     public String getName() {
         return name;
     }
 
     public int getId() {
         return id;
+    }
+
+    public int getBodyTemp() {
+        return bodyTemp;
+    }
+
+    public int getAge() {
+        return age;
     }
 
 }
