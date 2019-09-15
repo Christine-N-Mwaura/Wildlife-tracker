@@ -59,6 +59,32 @@ public class AnimalsTest {
 
     }
 
+    @Test
+    public void animals_instantiatesWithHalfTemperatureLevel_true() {
+        Animals testAnimal = setUpNewAnimal();
+        assertEquals(testAnimal.getBodyTemp(),(Animals.MAX_BODY_TEMP / 2));
+    }
+
+    @Test
+    public void animals_instantiatesWithHalfAgeLevel_true() {
+        Animals testAnimal = setUpNewAnimal();
+        assertEquals(testAnimal.getAge(),(testAnimal.MAX_ANIMAL_AGE / 2));
+    }
+
+    @Test
+    public void ageing_increasesAnimalsAge() {
+        Animals testAnimal = setUpNewAnimal();
+        testAnimal.ageing();
+        assertTrue(testAnimal.getAge()>(Animals.MAX_ANIMAL_AGE/2));
+    }
+
+    @Test
+    public void tempRising_increasesAnimalsBodyTemperature_true() {
+        Animals testAnimal = setUpNewAnimal();
+        testAnimal.tempRising();
+        assertTrue(testAnimal.getBodyTemp() > (Animals.MAX_BODY_TEMP / 2));
+    }
+
     public Animals setUpNewAnimal(){
         return new Animals ("Baboon");
     }
