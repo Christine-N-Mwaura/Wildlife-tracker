@@ -37,7 +37,7 @@ public class SightingTest {
     }
 
     @Test
-    public void all_returnsAllInstancesOfSighting_Sighting() {
+    public void all_returnsAllInstancesOfSighting_true() {
         Sighting firstSighting = setUpNewSighting();
         firstSighting.save();
         Sighting secondSighting = new Sighting("Ken","Zone B");
@@ -45,6 +45,25 @@ public class SightingTest {
         assertEquals(true,Sighting.all().get(0).equals(firstSighting));
         assertEquals(true,Sighting.all().get(1).equals(secondSighting));
 
+    }
+
+    @Test
+    public void save_assignsIdToTheObject() {
+        Sighting testSighting = setUpNewSighting();
+        testSighting.save();
+        Sighting savedSighting = Sighting.all().get(0);
+        assertEquals(testSighting.getId(),savedSighting.getId());
+    }
+
+    @Test
+    public void find_returnsSightingWithTheSameId_thirdSighting() {
+        Sighting firstSighting = setUpNewSighting();
+        firstSighting.save();
+        Sighting secondSighting = new Sighting("Mavin","Kiambu");
+        secondSighting.save();
+        Sighting thirdSighting = new Sighting("Kennedy","Mashinani");
+        thirdSighting.save();
+        assertEquals(Sighting.find(thirdSighting.getId()),thirdSighting);
     }
 
     public Sighting setUpNewSighting(){
