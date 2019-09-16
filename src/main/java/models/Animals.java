@@ -3,6 +3,7 @@ package models;
 import java.util.List;
 import java.util.Objects;
 import org.sql2o.*;
+import java.sql.Timestamp;
 
 public class Animals {
 
@@ -10,6 +11,8 @@ public class Animals {
     private int id;
     private int bodyTemp;
     private int age;
+    private Timestamp birthday;
+    private Timestamp lasttempupdated;
 
 
     public static final int MAX_BODY_TEMP = 40;
