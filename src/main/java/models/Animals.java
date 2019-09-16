@@ -70,6 +70,10 @@ public class Animals {
     }
 
     public void ageing (){
+        if(age >= MAX_ANIMAL_AGE){
+            throw new UnsupportedOperationException("The animal is overgrowm!!");
+        }
+
         age++;
     }
 
@@ -86,6 +90,9 @@ public class Animals {
     }
 
     public void tempRising(){
+        if(bodyTemp >= MAX_BODY_TEMP){
+            throw new UnsupportedOperationException("The animal's body temperature is too high!");
+        }
         bodyTemp ++;
     }
 
