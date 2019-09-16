@@ -85,6 +85,32 @@ public class AnimalsTest {
         assertTrue(testAnimal.getBodyTemp() > (Animals.MAX_BODY_TEMP / 2));
     }
 
+    @Test
+    public void tempRising_throwsExceptionIfTemperatureIsAtMaximumLevel() {
+        Animals testAnimal = setUpNewAnimal();
+        for(int i = Animals.MIN_ALL_LEVELS; i <= (Animals.MAX_BODY_TEMP); i++) {
+            try {
+                testAnimal.tempRising();
+            } catch (UnsupportedOperationException exception) { }
+
+        }
+        assertTrue(testAnimal.getBodyTemp() <= Animals.MAX_BODY_TEMP);
+    }
+
+    @Test
+    public void Animals_ageCannotGoBeyondMaximumValue_true() {
+        Animals testAnimal = setUpNewAnimal();
+        for(int i = Animals.MIN_ALL_LEVELS; i <= (Animals.MAX_ANIMAL_AGE); i++) {
+            try {
+                testAnimal.ageing();
+            } catch (UnsupportedOperationException exception) { }
+
+        }
+        assertTrue(testAnimal.getBodyTemp() <= Animals.MAX_ANIMAL_AGE);
+
+
+    }
+
     public Animals setUpNewAnimal(){
         return new Animals ("Baboon");
     }
