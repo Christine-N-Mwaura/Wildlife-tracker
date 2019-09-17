@@ -27,7 +27,7 @@ public class endangeredAnimalTest {
     @Test
     public void returnsTrueIfNamesAreTheSame_true() {
         endangeredAnimal testEndangered = setUpNewEndangered();
-      endangeredAnimal anotherEndangered = new endangeredAnimal("Baboon","healthy","adult");
+        endangeredAnimal anotherEndangered = new endangeredAnimal("Baboon","healthy","adult");
         assertTrue(testEndangered.equals(anotherEndangered));
     }
 
