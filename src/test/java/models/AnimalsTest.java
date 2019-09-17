@@ -68,6 +68,7 @@ public class AnimalsTest {
         assertEquals(Animals.find(anotherAnimal.getId()),anotherAnimal);
     }
 
+
     public Animals setUpNewAnimal(){
         return new Animals ("Baboon");
     }
