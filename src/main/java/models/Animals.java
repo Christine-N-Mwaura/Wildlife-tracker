@@ -14,6 +14,8 @@ public class Animals {
 
 
 
+
+
     public static final String ANIMAL_TYPE = "Common";
 
 
@@ -22,11 +24,11 @@ public class Animals {
             throw new IllegalArgumentException("Please enter an animal name.");
         }
         this.name = name;
+
         type = ANIMAL_TYPE;
 
 
     }
-
 
 
     @Override
@@ -34,7 +36,9 @@ public class Animals {
         if (this == otherAnimal) return true;
         if (otherAnimal == null || getClass() != otherAnimal.getClass()) return false;
         Animals animals = (Animals) otherAnimal;
-        return name.equals(animals.name);
+        return this.getName().equals(animals.getName());
+
+
     }
 
 
@@ -105,5 +109,7 @@ public class Animals {
     public String getType() {
         return type;
     }
+
+
 
 }
