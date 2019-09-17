@@ -7,23 +7,23 @@ import java.sql.Timestamp;
 
 public class Animals {
 
-    private String name;
-    private int id;
-    private int bodyTemp;
-    private int age;
-    private Timestamp birthday;
-    private Timestamp lasttempupdated;
+    public String name;
+    public int id;
+    public String type;
 
 
-    public static final int MAX_BODY_TEMP = 40;
-    public static final int MAX_ANIMAL_AGE = 70;
-    public static final int MIN_ALL_LEVELS = 0;
+
+
+    public static final String ANIMAL_TYPE = "Common";
 
 
     public Animals(String name){
+        if(name.equals("")){
+            throw new IllegalArgumentException("Please enter an animal name.");
+        }
         this.name = name;
-        this.bodyTemp = MAX_BODY_TEMP / 2 ;
-        this.age = MAX_ANIMAL_AGE / 2;
+        type = ANIMAL_TYPE;
+
 
     }
 
@@ -37,6 +37,8 @@ public class Animals {
         return name.equals(animals.name);
     }
 
+
+
     @Override
     public int hashCode() {
         return Objects.hash(name);
@@ -44,9 +46,11 @@ public class Animals {
 
     public void save(){
         try(Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO animals (name) VALUES (:name)";
+            String sql = "INSERT INTO animals (name,type) VALUES (:name,:type)";
              this.id = (int) con.createQuery(sql,true)
                     .addParameter("name",this.name)
+                     .addParameter("type",type)
+                     .throwOnMappingFailure(false)
                     .executeUpdate()
                      .getKey();
 
@@ -60,44 +64,33 @@ public class Animals {
         }
     }
 
-    public String ageStage(){
-        String stage = "";
-        if(age <= MAX_ANIMAL_AGE / 2){
-            stage = "young";
-        }else if(age > MAX_ANIMAL_AGE / 2){
-            stage = "adult";
-        }else if(age == 0){
-            stage = "newborn";
+    public static Animals find(int id){
+        String sql = "SELECT * FROM animals WHERE id = :id";
+        try(Connection con = DB.sql2o.open()){
+            return con.createQuery(sql)
+                    .addParameter("id",id)
+                    .executeAndFetchFirst(Animals.class);
+
         }
-        return stage;
     }
 
-    public void ageing (){
-        if(age >= MAX_ANIMAL_AGE){
-            throw new UnsupportedOperationException("The animal is overgrowm!!");
-        }
+    public void update(){
+        String sql = "UPDATE animals SET name = :name WHERE id = :id";
 
-        age++;
+        try(Connection con = DB.sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("name",name)
+                    .addParameter("id",id)
+                    .executeUpdate();
+
+        }
     }
 
-    public String healthStatus(){
-        String status = "";
-        if(bodyTemp <= MAX_BODY_TEMP / 2){
-            status = "ill";
-        }else if(bodyTemp >= MAX_BODY_TEMP /2){
-            status = "healthy";
-        }else {
-            status = "okay";
-        }
-        return status;
-    }
 
-    public void tempRising(){
-        if(bodyTemp >= MAX_BODY_TEMP){
-            throw new UnsupportedOperationException("The animal's body temperature is too high!");
-        }
-        bodyTemp ++;
-    }
+
+
+
+
 
     public String getName() {
         return name;
@@ -107,12 +100,10 @@ public class Animals {
         return id;
     }
 
-    public int getBodyTemp() {
-        return bodyTemp;
-    }
 
-    public int getAge() {
-        return age;
+
+    public String getType() {
+        return type;
     }
 
 }
