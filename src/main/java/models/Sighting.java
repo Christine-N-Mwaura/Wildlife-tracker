@@ -13,9 +13,10 @@ public class Sighting {
 
 
 
-    public Sighting(String name, String location){
+    public Sighting(String name, String location, int animalId){
         this.location = location;
         this.name = name;
+        this.animalId = animalId;
        // this.animalId = animalId;
     }
 
@@ -30,10 +31,11 @@ public class Sighting {
 
     public void save(){
         try(Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO sightings (name,location) VALUES (:name,:location)";
+            String sql = "INSERT INTO sightings (name,location,animalid) VALUES (:name,:location,:animalId)";
             this.id = (int) con.createQuery(sql,true)
                     .addParameter("name",this.name)
                     .addParameter("location",this.location)
+                    .addParameter("animalId",animalId)
                     .executeUpdate()
                     .getKey();
 
@@ -73,5 +75,9 @@ public class Sighting {
 
     public int getId() {
         return id;
+    }
+
+    public int getAnimalId() {
+        return animalId;
     }
 }
