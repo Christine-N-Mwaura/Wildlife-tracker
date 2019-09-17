@@ -61,6 +61,7 @@ public class endangeredAnimal extends Animals {
         }
     }
 
+
     public String getAge() {
         return age;
     }
@@ -69,4 +70,7 @@ public class endangeredAnimal extends Animals {
         return health;
     }
 
+//    public String getName() {
+//        return name;
+//    }
 }
