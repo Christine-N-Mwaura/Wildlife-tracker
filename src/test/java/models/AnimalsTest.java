@@ -60,55 +60,12 @@ public class AnimalsTest {
     }
 
     @Test
-    public void animals_instantiatesWithHalfTemperatureLevel_true() {
+    public void find_returnsAnimalWithSameId() {
         Animals testAnimal = setUpNewAnimal();
-        assertEquals(testAnimal.getBodyTemp(),(Animals.MAX_BODY_TEMP / 2));
-    }
-
-    @Test
-    public void animals_instantiatesWithHalfAgeLevel_true() {
-        Animals testAnimal = setUpNewAnimal();
-        assertEquals(testAnimal.getAge(),(testAnimal.MAX_ANIMAL_AGE / 2));
-    }
-
-    @Test
-    public void ageing_increasesAnimalsAge() {
-        Animals testAnimal = setUpNewAnimal();
-        testAnimal.ageing();
-        assertTrue(testAnimal.getAge()>(Animals.MAX_ANIMAL_AGE/2));
-    }
-
-    @Test
-    public void tempRising_increasesAnimalsBodyTemperature_true() {
-        Animals testAnimal = setUpNewAnimal();
-        testAnimal.tempRising();
-        assertTrue(testAnimal.getBodyTemp() > (Animals.MAX_BODY_TEMP / 2));
-    }
-
-    @Test
-    public void tempRising_throwsExceptionIfTemperatureIsAtMaximumLevel() {
-        Animals testAnimal = setUpNewAnimal();
-        for(int i = Animals.MIN_ALL_LEVELS; i <= (Animals.MAX_BODY_TEMP); i++) {
-            try {
-                testAnimal.tempRising();
-            } catch (UnsupportedOperationException exception) { }
-
-        }
-        assertTrue(testAnimal.getBodyTemp() <= Animals.MAX_BODY_TEMP);
-    }
-
-    @Test
-    public void Animals_ageCannotGoBeyondMaximumValue_true() {
-        Animals testAnimal = setUpNewAnimal();
-        for(int i = Animals.MIN_ALL_LEVELS; i <= (Animals.MAX_ANIMAL_AGE); i++) {
-            try {
-                testAnimal.ageing();
-            } catch (UnsupportedOperationException exception) { }
-
-        }
-        assertTrue(testAnimal.getBodyTemp() <= Animals.MAX_ANIMAL_AGE);
-
-
+        testAnimal.save();
+        Animals anotherAnimal = new Animals("Dog");
+        anotherAnimal.save();
+        assertEquals(Animals.find(anotherAnimal.getId()),anotherAnimal);
     }
 
     public Animals setUpNewAnimal(){
