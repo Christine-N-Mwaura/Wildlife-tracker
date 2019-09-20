@@ -8,12 +8,12 @@ One can also add a new animal and view the animals.
 
 ## User Requirements
 The application allow users to do the following:
-1.Add a new animal, common or endangered and save.
-2.View the added animals.
-3.Add a sighting for each animal and save.
+1. Add a new animal, common or endangered and save.
+2. View the added animals.
+3. Add a sighting for each animal and save.
 
 
-## Project SetupC
+## Project Setup
 * Make sure all requirements for running java applications are installed;JUnit, Intellij,SDK,JDK.
 * Clone the project to your local machine from https://github.com/Christine-N-Mwaura/Wildlife-tracker.git.
 * Run gradle run on the terminal.
