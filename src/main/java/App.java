@@ -34,7 +34,7 @@ public class App {
             String type = Animals.find(animalId).getType();
             Sighting newSighting =  new Sighting(rangerName,location,animalId,type);
             newSighting.save();
-            res.redirect("/sightings");
+            res.redirect("/animals");
             return null;
         }, new HandlebarsTemplateEngine());
 
@@ -57,7 +57,7 @@ public class App {
             String age = req.queryParams("age");
             Sighting newSighting =  new Sighting(rangerName,location,animalId,type,health,age);
             newSighting.save();
-            res.redirect("/sightings");
+            res.redirect("/animals");
             return null;
         }, new HandlebarsTemplateEngine());
 
