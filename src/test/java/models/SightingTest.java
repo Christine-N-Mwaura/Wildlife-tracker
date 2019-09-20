@@ -40,7 +40,7 @@ public class SightingTest {
     public void all_returnsAllInstancesOfSighting_true() {
         Sighting firstSighting = setUpNewSighting();
         firstSighting.save();
-        Sighting secondSighting = new Sighting("Ken","Zone B",2);
+        Sighting secondSighting = new Sighting("Ken","Zone B",2,"common");
         secondSighting.save();
         assertEquals(true,Sighting.all().get(0).equals(firstSighting));
         assertEquals(true,Sighting.all().get(1).equals(secondSighting));
@@ -59,9 +59,9 @@ public class SightingTest {
     public void find_returnsSightingWithTheSameId_thirdSighting() {
         Sighting firstSighting = setUpNewSighting();
         firstSighting.save();
-        Sighting secondSighting = new Sighting("Mavin","Kiambu",2);
+        Sighting secondSighting = new Sighting("Mavin","Kiambu",2,"common");
         secondSighting.save();
-        Sighting thirdSighting = new Sighting("Kennedy","Mashinani",2);
+        Sighting thirdSighting = new Sighting("Kennedy","Mashinani",2,"common");
         thirdSighting.save();
         assertEquals(Sighting.find(thirdSighting.getId()),thirdSighting);
     }
@@ -69,14 +69,14 @@ public class SightingTest {
     public void save_savesAnimalIdIntoDB_true() {
         Animals testAnimal = new Animals("Baboon");
         testAnimal.save();
-        Sighting testSighting = new Sighting("Man","Zone C",testAnimal.getId());
+        Sighting testSighting = new Sighting("Man","Zone C",testAnimal.getId(),"common");
         testSighting.save();
         Sighting savedSighting = Sighting.find(testSighting.getId());
         assertEquals(savedSighting.getAnimalId(),testAnimal.getId());
     }
 
     public Sighting setUpNewSighting(){
-        return new Sighting("Morris","Zone A",1);
+        return new Sighting("Morris","Zone A",1,"common");
     }
 
 

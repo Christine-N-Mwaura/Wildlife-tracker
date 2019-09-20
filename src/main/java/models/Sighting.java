@@ -10,14 +10,27 @@ public class Sighting {
     private String name;
     private int animalId;
     private int id;
+    private String type;
+    private String age;
+    private String health;
 
 
 
-    public Sighting(String name, String location, int animalId){
+
+    public Sighting(String name, String location, int animalId,String type){
         this.location = location;
         this.name = name;
         this.animalId = animalId;
-       // this.animalId = animalId;
+        this.type = type;
+    }
+
+    public Sighting(String name, String location, int animalId,String type,String age,String health){
+        this.location = location;
+        this.name = name;
+        this.animalId = animalId;
+        this.type = type;
+        this.age = age;
+        this.health = health;
     }
 
     @Override
@@ -31,11 +44,14 @@ public class Sighting {
 
     public void save(){
         try(Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO sightings (name,location,animalid) VALUES (:name,:location,:animalId)";
+            String sql = "INSERT INTO sightings (name,location,animalid,type,time_sighted,health,age) VALUES (:name,:location,:animalId,:type,now(),:health,:age)";
             this.id = (int) con.createQuery(sql,true)
                     .addParameter("name",this.name)
                     .addParameter("location",this.location)
                     .addParameter("animalId",animalId)
+                    .addParameter("type",type)
+                    .addParameter("age",age)
+                    .addParameter("health",health)
                     .executeUpdate()
                     .getKey();
 

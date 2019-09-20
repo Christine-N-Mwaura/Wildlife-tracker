@@ -12,10 +12,6 @@ public class Animals {
     public String type;
 
 
-
-
-
-
     public static final String ANIMAL_TYPE = "Common";
 
 
@@ -25,7 +21,7 @@ public class Animals {
         }
         this.name = name;
 
-        type = ANIMAL_TYPE;
+        this.type = ANIMAL_TYPE;
 
 
     }
@@ -53,7 +49,7 @@ public class Animals {
             String sql = "INSERT INTO animals (name,type) VALUES (:name,:type)";
              this.id = (int) con.createQuery(sql,true)
                     .addParameter("name",this.name)
-                     .addParameter("type",type)
+                     .addParameter("type",this.type)
                      .throwOnMappingFailure(false)
                     .executeUpdate()
                      .getKey();

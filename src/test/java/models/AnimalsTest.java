@@ -68,6 +68,13 @@ public class AnimalsTest {
         assertEquals(Animals.find(anotherAnimal.getId()),anotherAnimal);
     }
 
+    @Test
+    public void animalSavesWithTypeCommon(){
+        Animals animal = setUpNewAnimal();
+        animal.save();
+        assertEquals("Common", Animals.all().get(0).getType());
+    }
+
 
     public Animals setUpNewAnimal(){
         return new Animals ("Baboon");
