@@ -3,7 +3,7 @@ package models;
 import org.sql2o.*;
 import java.util.List;
 import java.util.Objects;
-
+import java.sql.Timestamp;
 public class Sighting {
 
     private String location;
@@ -13,6 +13,7 @@ public class Sighting {
     private String type;
     private String age;
     private String health;
+    public Timestamp time_sighted;
 
 
 
@@ -24,7 +25,11 @@ public class Sighting {
         this.type = type;
     }
 
-    public Sighting(String name, String location, int animalId,String type,String age,String health){
+    public Timestamp getTime_sighted() {
+        return time_sighted;
+    }
+
+    public Sighting(String name, String location, int animalId, String type, String age, String health){
         this.location = location;
         this.name = name;
         this.animalId = animalId;
@@ -59,7 +64,7 @@ public class Sighting {
         }
     }
     public static List<Sighting> all(){
-        String sql = "SELECT * FROM sightings";
+        String sql = "SELECT * FROM sightings ORDER BY id";
         try(Connection con = DB.sql2o.open()){
             return con.createQuery(sql).executeAndFetch(Sighting.class);
 
