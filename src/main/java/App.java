@@ -25,7 +25,6 @@ public class App {
         }
 
         port(port);
-
         get("/",(req,res)->{
             Map<String,Object>model = new HashMap<>();
             return new ModelAndView(model,"index.hbs");
