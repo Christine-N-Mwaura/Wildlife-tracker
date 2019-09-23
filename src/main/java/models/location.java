@@ -17,7 +17,7 @@ public class location {
 
 
     public static List <location> all() {
-        String sql = "SELECT * FROM locations";
+        String sql = "SELECT * FROM locations  ORDER BY id ASC";
         try(Connection con = DB.sql2o.open()){
             return con.createQuery(sql).executeAndFetch(location.class);
         }

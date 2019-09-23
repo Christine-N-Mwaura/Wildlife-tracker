@@ -64,7 +64,7 @@ public class Sighting {
         }
     }
     public static List<Sighting> all(){
-        String sql = "SELECT * FROM sightings ORDER BY id";
+        String sql = "SELECT * FROM sightings ORDER BY id ASC";
         try(Connection con = DB.sql2o.open()){
             return con.createQuery(sql).executeAndFetch(Sighting.class);
 

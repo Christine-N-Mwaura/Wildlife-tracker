@@ -46,7 +46,7 @@ public class App {
             String type = Animals.find(animalId).getType();
             Sighting newSighting =  new Sighting(rangerName,location,animalId,type);
             newSighting.save();
-            res.redirect("/animals");
+            res.redirect("/sightings");
             return null;
         }, new HandlebarsTemplateEngine());
 
